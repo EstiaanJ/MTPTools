@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fastener Selection</title>
+    <style>
+
+         body {
+             font-family: Arial, sans-serif;
+             background-color: #1c2541;
+             color: #f0e6ef;
+             margin: 0;
+             padding: 0;
+         }
+
+        form {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4a69bd;
+            color: #f0e6ef;
+            font-size: 16px;
+            padding: 10px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #3c4f8a;
+        }
+
+        #total-length {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+
+    </style>
+    <script>
+        function addWasher() {
+            let washerContainer = document.getElementById("washer-container");
+            let newWasher = document.createElement("div");
+            newWasher.innerHTML = `
+                <label for="washer">Washer:</label>
+                <select name="washer" id="washer">
+                    <option value="flat">Flat</option>
+                    <option value="construction">Construction</option>
+                    <option value="none">No Washer</option>
+                </select>
+            `;
+            washerContainer.appendChild(newWasher);
+        }
+
+        function addMaterial() {
+            let materialContainer = document.getElementById("material-container");
+            let newMaterial = document.createElement("div");
+            newMaterial.innerHTML = `
+                <label for="material-thickness">Material Thickness:</label>
+                <input type="number" step="0.01" name="material-thickness" id="material-thickness" required>
+            `;
+            materialContainer.appendChild(newMaterial);
+        }
+
+        function calculateBoltLength() {
+            const springWasherThickness = 5;
+            const nutSizeToThickness = {
+                "M3": 3,
+                "M4": 4,
+                "M5": 5,
+                "M6": 6,
+                "M8": 8,
+                "M10": 10,
+                "M12": 12,
+                "M14": 14,
+                "M16": 16,
+                "M18": 18,
+                "M20": 20,
+                "M24": 24,
+            };
+
+            const boltSize = document.getElementById('bolt-size').value;
+            console.log("Bolt Size: " + boltSize);
+            const nutThickness = nutSizeToThickness[boltSize];
+            console.log("Nut Thickness: " + nutThickness);
+
+            if (document.getElementById('spring-washer').value === 'yes') {
+                var springWasher = springWasherThickness;
+            } else {
+                var springWasher = 0;
+            }
+
+            console.log("Spring Washer: " + springWasher);
+
+            let materialThickness = 0;
+            const materialInputs = document.querySelectorAll('#material-container input');
+            materialInputs.forEach(input => {
+                materialThickness += parseFloat(input.value);
+            });
+
+            console.log("Material Thickness: " + materialThickness);
+
+            //If no washer, thickens 0, if flat washer, thickness 2.5, if construction washer, thickness 3
+            let washerThickness = 0;
+
+            //for each washer: If flat add 2.5, if construction add 3, if none add 0
+            const washerInputs = document.querySelectorAll('#washer-container select');
+            washerInputs.forEach(input => {
+                if (input.value === 'flat') {
+                    washerThickness += 2.5;
+                } else if (input.value === 'construction') {
+                    washerThickness += 3;
+                } else {
+                    washerThickness += 0;
+                }
+            });
+
+
+            console.log("Washer Thickness: " + washerThickness);
+
+            const totalLength = materialThickness + springWasher + nutThickness + washerThickness;
+            document.getElementById('total-length').innerText = `Total Length: ${totalLength} mm`;
+            //Excel for nearest metric =CEILING(F2/2,1)*2
+            const nearestMetric = Math.ceil(totalLength / 2) * 2;
+            document.getElementById('nearest').innerText = `Nearest Metric Bolt: ${boltSize}X${nearestMetric}`;
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+<form>
+    <div class="input-container">
+        <label for="bolt-size">Bolt Size:</label>
+        <select name="bolt-size" id="bolt-size">
+            <option value="M3">M3</option>
+            <option value="M4">M4</option>
+            <option value="M5">M5</option>
+            <option value="M6">M6</option>
+            <option value="M8">M8</option>
+            <option value="M10">M10</option>
+            <option value="M12">M12</option>
+            <option value="M14">M14</option>
+            <option value="M16">M16</option>
+            <option value="M18">M18</option>
+            <option value="M20">M20</option>
+            <option value="M24">M24</option>
+        </select>
+    </div>
+
+    <div class="input-container">
+        <label for="spring-washer">Spring Washer:</label>
+        <select name="spring-washer" id="spring-washer">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+    </div>
+
+    <div class="input-container">
+        <label for="nut">Nut:</label>
+        <select name="nut" id="nut">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+        <!--
+        <div class="input-container">
+            <label for="nut-thickness">Nut Thickness:</label>
+            <input type="number" step="0.01" name="nut-thickness" id="nut-thickness" required>
+        </div> -->
+    </div>
+
+    <div id="washer-container">
+        <div class="input-container">
+            <label for="washer">Washer:</label>
+            <select name="washer" id="washer">
+                <option value="flat">Flat</option>
+                <option value="construction">Construction</option>
+                <option value="none">No Washer</option>
+            </select>
+        </div>
+    </div>
+    <button type="button" onclick="addWasher()">Add Washer</button>
+
+    <div id="material-container">
+        <div class="input-container">
+            <label for="material-thickness">Material Thickness:</label>
+            <input type="number" step="0.01" name="material-thickness" id="material-thickness" required>
+        </div>
+    </div>
+    <button type="button" onclick="addMaterial()">Add New Material</button>
+    <br><br>
+    <button type="button" onclick="calculateBoltLength()">Calculate</button>
+    <br><br>
+    <div id="total-length"></div>
+    <div id="nearest"></div>
+
+</form>
+</div>
+</body>
+</html>
