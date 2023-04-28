@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fastener Selection</title>
     <style>
-
          body {
              font-family: Arial, sans-serif;
              background-color: #1c2541;
@@ -66,7 +65,7 @@
 
 
     </style>
-    <script>
+    <script >
         function addWasher() {
             let washerContainer = document.getElementById("washer-container");
             let newWasher = document.createElement("div");
@@ -129,15 +128,15 @@
 
             console.log("Material Thickness: " + materialThickness);
 
-            //If no washer, thickens 0, if flat washer, thickness 2.5, if construction washer, thickness 3
+            //If no washer, thickens 0, if flat washer, thickness 2.5, if Structural washer, thickness 3
             let washerThickness = 0;
 
-            //for each washer: If flat add 2.5, if construction add 3, if none add 0
+            //for each washer: If flat add 2.5, if Structural add 3, if none add 0
             const washerInputs = document.querySelectorAll('#washer-container select');
             washerInputs.forEach(input => {
-                if (input.value === 'flat') {
+                if (input.value === 'Flat') {
                     washerThickness += 2.5;
-                } else if (input.value === 'construction') {
+                } else if (input.value === 'Structural') {
                     washerThickness += 3;
                 } else {
                     washerThickness += 0;
@@ -201,8 +200,8 @@
         <div class="input-container">
             <label for="washer">Washer:</label>
             <select name="washer" id="washer">
-                <option value="flat">Flat</option>
-                <option value="construction">Construction</option>
+                <option value="Flat">Flat</option>
+                <option value="Structural">Structural</option>
                 <option value="none">No Washer</option>
             </select>
         </div>
