@@ -14,8 +14,9 @@ func main() {
 }
 
 func setup(router *gin.Engine) {
-	router.Static("/scripts", "./scripts")
-	router.Static("/images", "./images")
+	//router.Static("pages/scripts", "./scripts")
+	//router.Static("pages/images", "./images")
+	router.Static("pages", "./pages")
 	router.LoadHTMLGlob("pages/*.html")
 
 	router.GET("/", func(c *gin.Context) {
