@@ -21,7 +21,25 @@ func setup(router *gin.Engine) {
 
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{
-			"content": "Login page",
+			"content": "Home page",
+		})
+	})
+
+	router.GET("/fastener-calculator", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "fasteners.html", gin.H{
+			"content": "Fastener Tool",
+		})
+	})
+
+	router.GET("/part-number-decoder", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "part-number.html", gin.H{
+			"content": "Fastener Tool",
+		})
+	})
+
+	router.GET("/curve-generator", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "curve-generator.html", gin.H{
+			"content": "Curve Generator",
 		})
 	})
 
