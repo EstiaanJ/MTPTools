@@ -121,60 +121,62 @@
         }
 
         function calculateBoltLength() {
-            const nutSizeToThickness = {
-                "M3": 3,
-                "M4": 4,
-                "M5": 5,
-                "M6": 6,
-                "M8": 8,
-                "M10": 10,
-                "M12": 12,
-                "M14": 14,
-                "M16": 16,
-                "M18": 18,
-                "M20": 20,
-                "M24": 24,
-            };
+        const nutSizeToThickness = {
+            "M3": 3,
+            "M4": 4,
+            "M5": 5,
+            "M6": 6,
+            "M8": 8,
+            "M10": 10,
+            "M12": 12,
+            "M14": 14,
+            "M16": 16,
+            "M18": 18,
+            "M20": 20,
+            "M24": 24,
+        };
 
-            const boltSize = document.getElementById('bolt-size').value;
-            console.log("Bolt Size: " + boltSize);
-            const nutThickness = nutSizeToThickness[boltSize];
-            console.log("Nut Thickness: " + nutThickness);
+        const boltSize = document.getElementById('bolt-size').value;
+        console.log("Bolt Size: " + boltSize);
+        const nutThickness = nutSizeToThickness[boltSize];
+        console.log("Nut Thickness: " + nutThickness);
 
-            let totalLength = 0;
+        let totalLength = 5;
 
-            const componentInputs = document.querySelectorAll('.component-container .input-container');
-            componentInputs.forEach(input => {
-                const componentType = input.querySelector('.component').value;
-                var componentDefault = 0;
-                switch (componentType) {
-                    case 'nut':
-                        componentDefault = nutThickness;
-                        break;
-                    case 'flat_washer':
-                        componentDefault = 2.5;
-                        break;
-                    case 'structural_washer':
-                        componentDefault = 3;
-                        break;
-                    case 'spring_washer':
-                        totalLength = 5;
-                        break;
-                    case 'material':
-                        totalLength = 0;
-                        break;
-                    default:
-                        break;
-                }
+        const componentInputs = document.querySelectorAll('.component-container .input-container');
+        componentInputs.forEach(input => {
+            const componentType = input.querySelector('.component').value;
+            const componentValue = parseFloat(input.querySelector('.component-value').value);
+            let componentDefault = 0;
 
-                totalLength = parseFloat(input.querySelector('.component-value').value) || componentDefault;
-            });
+            switch (componentType) {
+                case 'nut':
+                    componentDefault = nutThickness;
+                    break;
+                case 'flat_washer':
+                    componentDefault = 2.5;
+                    break;
+                case 'structural_washer':
+                    componentDefault = 3;
+                    break;
+                case 'spring_washer':
+                    componentDefault = 5;
+                    break;
+                case 'material':
+                    componentDefault = 0;
+                    break;
+                default:
+                    break;
+            }
 
-            console.log("Total Length: " + totalLength);
-            document.getElementById('total-length').innerText = `Total Length: ${totalLength} mm`;
-            const nearestMetric = Math.ceil(totalLength / 2) * 2;
-            document.getElementById('nearest').innerText = `Nearest Metric Bolt: ${boltSize}X${nearestMetric}`;
-        }
+            totalLength += (componentValue || componentDefault);
+        });
+
+        console.log("Total Length: " + totalLength);
+        document.getElementById('total-length').innerText = `Total Length: ${totalLength} mm`;
+        const nearestMetric = Math.ceil(totalLength / 2) * 2;
+        document.getElementById('nearest').innerText = `Nearest Metric Bolt: ${boltSize}X${nearestMetric}`;
+    }
 
     </script>
 </head>
@@ -182,7 +184,7 @@
 <div class="container">
     <form>
         <div class="input-container">
-            <h1>Bolt Length Calculator</h1>
+            <h1>Fastener Length Calculator</h1>
             <label for="bolt-size">Bolt Size:</label>
             <select name="bolt-size" id="bolt-size">
                 <option value="M3">M3</option>
@@ -207,6 +209,11 @@
         <br><br>
         <div id="total-length"></div>
         <div id="nearest"></div>
+        <div>
+            <p1>
+                Please note: extra 5mm added for spacing & tolerence
+            </p1>
+        </div>
     </form>
 </div>
 </body>
