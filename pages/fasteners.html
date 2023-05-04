@@ -146,26 +146,28 @@
             const componentInputs = document.querySelectorAll('.component-container .input-container');
             componentInputs.forEach(input => {
                 const componentType = input.querySelector('.component').value;
-                const componentValue = parseFloat(input.querySelector('.component-value').value) || 0;
+                var componentDefault = 0;
                 switch (componentType) {
                     case 'nut':
-                        totalLength += nutThickness;
+                        componentDefault = nutThickness;
                         break;
                     case 'flat_washer':
-                        totalLength += 2.5;
+                        componentDefault = 2.5;
                         break;
                     case 'structural_washer':
-                        totalLength += 3;
+                        componentDefault = 3;
                         break;
                     case 'spring_washer':
-                        totalLength += 5;
+                        totalLength = 5;
                         break;
                     case 'material':
-                        totalLength += componentValue;
+                        totalLength = 0;
                         break;
                     default:
                         break;
                 }
+
+                totalLength = parseFloat(input.querySelector('.component-value').value) || componentDefault;
             });
 
             console.log("Total Length: " + totalLength);
