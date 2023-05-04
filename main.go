@@ -32,7 +32,7 @@ func setup(router *gin.Engine) {
 	})
 
 	router.GET("/part-number-decoder", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "part-number.html", gin.H{
+		c.HTML(http.StatusOK, "part-number-decoder.html", gin.H{
 			"content": "Fastener Tool",
 		})
 	})
@@ -40,6 +40,12 @@ func setup(router *gin.Engine) {
 	router.GET("/curve-generator", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "curve-generator.html", gin.H{
 			"content": "Curve Generator",
+		})
+	})
+
+	router.GET("/part-number-generator", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "part-number-generator.html", gin.H{
+			"content": "Part Number Generator",
 		})
 	})
 

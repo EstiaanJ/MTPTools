@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part Code Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            width: 70%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-height: 720px) {
+            .container {
+                width: 100%;
+            }
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        select, input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+        select {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #5c5c5c;
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #444;
+        }
+
+        #partCode {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+    <script>
+        function generatePartCode() {
+            const seriesCode = document.getElementById('series').value;
+            const componentCode = document.getElementById('component').value;
+            const moduleCode = document.getElementById('module').value;
+            const materialCode = document.getElementById('material').value;
+            const sealingCode = document.getElementById('sealing-options').value;
+            const impellerStyleCode = document.getElementById('impeller-style').value; 
+            const wearRingCode = document.getElementById('wear-ring').value;
+            const flangeCode = document.getElementById('flange').value;
+            const internalCoatingsCode = document.getElementById('internal-coatings').value;
+            const sealflushingCode = document.getElementById('seal-flushing').value;
+            const otherCode = document.getElementById('other').value;
+            const partCode = seriesCode + componentCode + moduleCode + materialCode + sealingCode + impellerStyleCode + wearRingCode + flangeCode + internalCoatingsCode + sealflushingCode + otherCode;
+            document.getElementById('partCode').innerText = 'Generated Part Code: ' + partCode;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Part Code Generator</h1>
+    <form onsubmit="event.preventDefault(); generatePartCode();">
+            <label for="series">Series:</label>
+            <input type="text" id="series" placeholder="Enter series" />
+
+        <label for="component">Component:</label>
+        
+        <select id="component">
+            <option value="07">Volute</option>
+            <option value="13">Impeller</option>
+            <option value="39">Backplate</option>
+            <option value="45">Wear Ring Volute</option>
+            <option value="46">Wear Ring Backplate</option>
+        </select>
+
+        <label for="module">Module:</label>
+        <select id="module">
+            <option value="16">ISO Mod 1</option>
+            <option value="17">ISO Mod 2</option>
+            <option value="19">ISO Mod 4</option>
+            <option value="39">Super Heavy Duty</option>
+        </select>
+
+        <label for="material">Material:</label>
+        <select id="material">
+            <option value="01">Cast Iron</option>
+            <option value="02">PB2 Zinc Free Bronze</option>
+            <option value="04">SG (Ductile Iron)</option>
+            <option value="06">316 Stainless Steel</option>
+            <option value="08">27% High Chrome</option>
+            <option value="11">Austenitic Iron</option>
+            <option value="34">H3C Stainless Steel</option>
+            <option value="15">Duplex Stainless Steel CD4MCu</option>
+            <option value="D2">Super Duplex Stainless Steel A890 4A</option>
+            <option value="27">Aluminium Bronze</option>
+            <option value="03">LG2 Bronze</option>
+        </select>
+
+        <label for="sealing-options">Sealing Options:</label>
+        <select id="sealing-options">
+            <option value="Z">Not Applicable</option>
+            <option value="1">Glad Packed</option>
+            <option value="2">Mechanical Seal</option>
+            <option value="3">Cartridge Seal</option>
+        </select>
+
+        <label for="impeller-style">Impeller Style:</label>
+        <select id="impeller-style">
+            <option value="Z">Not Applicable</option>
+            <option value="1">Single Spigot</option>
+            <option value="2">Double Spigot</option>
+            <option value="3">Open</option>
+            <option value="4">Vortex</option>
+        </select>
+
+        <label for="wear-ring">Wear Ring Options:</label>
+        <select id="wear-ring">
+            <option value="Z">Not Applicable</option>
+            <option value="0">No Wear Ring</option>
+            <option value="1">Machined For Wear Ring</option>
+            <option value="2">27% High Chrome Iron Wear Ring</option>
+            <option value="3">LG2 Wear Ring</option>
+            <option value="4">316 Stainless Steel Wear Ring</option>
+            <option value="5">Duplex Stainless Steel Wear Ring</option>
+            <option value="6">Stainless Steel Wear Ring</option>
+            <option value="7">Bronze Wear Ring</option>
+            <option value="8">Wear Ring</option>
+        </select>
+
+        <label for="flange">Flange Options:</label>
+        <select id="flange">
+            <option value="Z">Not Applicable</option>
+            <option value="0">Table E</option>
+            <option value="1">ANSI Class 150 Raised Face</option>
+            <option value="2">ANSI Class 150 Flat Face</option>
+            <option value="3">ANSI Class 300 Raised Face</option>
+            <option value="4">ANSI Class 300 Flat Face</option>
+            <option value="5">DIN PN16 Raised Face</option>
+            <option value="6">AS 4087 Water Works</option>
+            <option value="7">Table H</option>
+            <option value="8">Table D</option>
+        </select>
+
+        <label for="internal-coatings">Internal Coatings:</label>
+        <select id="internal-coatings">
+            <option value="Z">Not Applicable</option>
+            <option value="0">No Internal Coating</option>
+            <option value="1">Standard Ceramic</option>
+            <option value="2">Epigen 1311 Ceramic</option>
+            <option value="3">Urethane Internal Coated</option>
+        </select>
+
+        <label for="seal-flushing">Seal Flushing:</label>
+        <select id="seal-flushing">
+            <option value="Z">Not Applicable</option>
+            <option value="0">Standard With Flushing Port</option>
+            <option value="3">Vertical Mount Seal Chamber</option>
+        </select>
+
+        <label for="other">Other Options:</label>
+        <select id="other">
+            <option value="Z">Not Applicable</option>
+            <option value="1">Casing Drain</option>
+            <option value="3">Casing Vent</option>
+        </select>
+
+
+        <button type="submit">Generate Part Code</button>
+    </form>
+    <p id="partCode"></p>
+    </div>
+    
+</body>
+</html>
