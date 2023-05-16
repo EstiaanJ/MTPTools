@@ -182,7 +182,7 @@
         });
 
         console.log("Total Length: " + totalLength);
-        document.getElementById('total-length').innerText = `Total Length: ${totalLength} mm`;
+        document.getElementById('total-length').innerText = `Total Length: ${totalLength.toFixed(3)} mm`;
         const nearestMetric = findNearestMetric(totalLength,boltSize)
         document.getElementById('nearest').innerText = `Nearest Metric Bolt: ${nearestMetric}`;
     }
@@ -486,6 +486,11 @@ function calculateExternHexSize(boltSize){
 }
 
 
+function updateSocketSize() {
+    var boltSize = document.getElementById("bolt-size").value;
+    var socketSize = calculateExternHexSize(boltSize);
+    document.getElementById("socket-size").innerHTML = "Socket Size: " + socketSize;
+}
 
 
 
@@ -502,7 +507,7 @@ function calculateExternHexSize(boltSize){
         <div class="input-container">
             <h1>Metric Fastener Length Calculator</h1>
             <label for="bolt-size">Bolt Size:</label>
-            <select name="bolt-size" id="bolt-size">
+            <select name="bolt-size" id="bolt-size" onchange="updateSocketSize()">
                 <option value="M0.4">M0.4</option>
                 <option value="M0.45">M0.45</option>
                 <option value="M0.5">M0.5</option>
@@ -551,6 +556,7 @@ function calculateExternHexSize(boltSize){
                 Please note: extra 5mm has been included for spacing & tolerance
             </p>
         </div>
+        <div id="socket-size"></div>
     </form>
 </div>
 </body>
