@@ -380,8 +380,6 @@ function calculateStructuralWasher(boltSize){
         case 'M7':
         case 'M8':
         case 'M10':
-            washerThickness = 3.1;
-            break;
         case 'M12':
         case 'M14':
         case 'M16':
@@ -479,7 +477,7 @@ function calculateExternHexSize(boltSize){
             hexSize = 95;
             break;
         default:
-            hexSize = 'Unknown bolt size';
+            hexSize = 'Unknown tool size';
             break;
     }
     return hexSize;
