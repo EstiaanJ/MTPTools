@@ -67,6 +67,9 @@
                   const outputTable = document.getElementById("outputTable");
   
                   // Fill in the appropriate cases and descriptions for each function
+                  const seriesCode = partNumber.slice(0,4);
+                  const seriesDescription = getSeries(seriesCode);
+
                   const componentCode = partNumber.slice(4, 6);
                   const componentDescription = getComponentDescription(componentCode);
   
@@ -106,8 +109,8 @@
                       </tr>
                       <tr>
                           <td>Series</td>
-                          <td>${partNumber.slice(0, 4)}</td>
-                          <td>${partNumber.slice(0, 4)} Series</td>
+                          <td>${seriesCode}</td>
+                          <td>${seriesDescription} Series</td>
                         </tr>
                     <tr>
                         <td>Component</td>
@@ -160,6 +163,108 @@
                         <td>${otherOptionsDescription}</td>
                     </tr>
                 `;
+            }
+
+            function getSeries(code) {
+                let description = '';
+                switch (code) {
+                    case '1900':
+                        description = '50x32-160'
+                        break;
+                    case '3800':
+                        description = '65x50-160'
+                        break;
+                    case '4500':
+                        description = '80x65-160'
+                        break;
+                    case '2000':
+                        description = '50x32-200'
+                        break;
+                    case '2800':
+                        description = '65x40-200'
+                        break;
+                    case '3900':
+                        description = '80x50-200'
+                        break;
+                    case '5500':
+                        description = '100x80-160'
+                        break;
+                    case '4600':
+                        description = '100x65-200'
+                        break;
+                    case '6200':
+                        description = '25x100-200'
+                        break;
+                    case '7400':
+                        description = '150x150-200'
+                        break;
+                    case '2900':
+                        description = '65x40-250'
+                        break;
+                    case '4000':
+                        description = '80x50-250'
+                        break;
+                    case '4700':
+                        description = '100x65-250'
+                        break;
+                    case '3000':
+                        description = '65x40-315'
+                        break;
+                    case '4100':
+                        description = '80x50x315'
+                        break;
+                    case '6300':
+                        description = '125x100-250'
+                        break;
+                    case '7000':
+                        description = '150x125-250'
+                        break;
+                    case '4800':
+                        description = '100x65-315'
+                        break;
+                    case '6400':
+                        description = '125x100-315'
+                        break;
+                    case '7100':
+                        description = '150x125-315'
+                        break;
+                    case '5600':
+                        description = '125x80-400'
+                        break;
+                    case '6500':
+                        description = '125x100-400'
+                        break;
+                    case '7200':
+                        description = '150x125-400'
+                        break;
+                    case '8200':
+                        description = '200x150-315'
+                        break;
+                    case '9000':
+                        description = '250x200-315'
+                        break;
+                    case '8300':
+                        description = '200x150-400'
+                        break;
+                    case '9100':
+                        description = '250x250-400'
+                        break;
+                    case '6600':
+                        description = '125x100-500'
+                        break;
+                    case '8400':
+                        description = '200x150-500'
+                        break;
+                    case '9200':
+                        description = 'WIP'
+                        break;
+                    case '9300':
+                        description = '300x250-400'
+                        break;
+                    default:
+                        description = 'Unknown'
+                }
+                return description;
             }
 
             // Add your cases and descriptions for each function
