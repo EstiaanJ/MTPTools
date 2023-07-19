@@ -49,6 +49,12 @@ func setup(router *gin.Engine) {
 		})
 	})
 
+	router.GET("/fastener-list-gen", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "fastener_list_gen.html", gin.H{
+			"content": "Fastener List Generator",
+		})
+	})
+
 	/*router.GET("/account.html", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "account.html", gin.H{
 			"content": "User account page",
