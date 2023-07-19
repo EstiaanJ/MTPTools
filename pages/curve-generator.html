@@ -1,0 +1,92 @@
+<head>
+    <script src='https://cdn.plot.ly/plotly-2.20.0.min.js'></script>
+    <title>MTP Pump Curve Tool</title>
+    <style>
+        .table-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .table-container table {
+            margin-right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Malcolm Thompson Pumps</h1>
+    <h2>Pump Curve Tool</h2>
+    <div class="table-container">
+        <div>
+            <h3>Original Characteristics</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Flow (L/s)</th>
+                        <th>Head (m)</th>
+                        <th>Efficiency (%)</th>
+                        <th>Power (kW)</th>
+                    </tr>
+                </thead>
+                <tbody id="characteristicsTable">
+                </tbody>
+            </table>
+            <label for="originalSpeed">Original Speed:</label>
+            <input type="text" id="originalSpeed" oninput="decodeNumber()">
+        </div>
+        <div>
+            <h3>New Characteristics</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Flow (L/s)</th>
+                        <th>Head (m)</th>
+                        <th>Efficiency (%)</th>
+                        <th>Power (kW)</th>
+                    </tr>
+                </thead>
+                <tbody id="newCharacteristicsTable">
+                </tbody>
+            </table>
+            <label for="newSpeed">New Speed:</label>
+            <input type="text" id="newSpeed" oninput="decodeNumber()">
+        </div>
+    </div>
+    <div id='myDiv'></div>
+    <script>
+        var originalTable = document.getElementById("characteristicsTable");
+        var newTable = document.getElementById("newCharacteristicsTable");
+        for (var i = 0; i < 10; i++) {
+            var originalRow = originalTable.insertRow();
+            var newRow = newTable.insertRow();
+            for (var j = 0; j < 4; j++) {
+                var originalCell = originalRow.insertCell();
+                var newCell = newRow.insertCell();
+                var input = document.createElement("input");
+                input.type = "text";
+                originalCell.appendChild(input.cloneNode());
+                newCell.appendChild(input);
+            }
+        }
+        
+        
+        originalCurve = {
+            'type': 'scatter',
+            'mode': 'lines',
+            'x': [1, 2, 3, 4, 5],
+            'y': [4, 6, 2, 7, 8],
+            'line': {'shape': 'spline', 'smoothing': 1.3}
+        };
+      
+        newCurve = {
+            'type': 'scatter',
+            'mode': 'lines',
+            'x': [1, 2, 3, 4, 5],
+            'y': [4, 3, 2.2, 6, 9],
+            'line': {'shape': 'spline', 'smoothing': 1.3}
+        };
+      
+        var data = [originalCurve, newCurve];
+      
+        Plotly.newPlot('myDiv', data);
+    </script>
+</body>

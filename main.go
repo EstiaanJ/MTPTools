@@ -14,13 +14,38 @@ func main() {
 }
 
 func setup(router *gin.Engine) {
-	router.Static("/scripts", "./scripts")
-	router.Static("/images", "./images")
+	//router.Static("pages/scripts", "./scripts")
+	//router.Static("pages/images", "./images")
+	router.Static("pages", "./pages")
 	router.LoadHTMLGlob("pages/*.html")
 
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{
-			"content": "Login page",
+			"content": "Home page",
+		})
+	})
+
+	router.GET("/fastener-calculator", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "fasteners.html", gin.H{
+			"content": "Fastener Tool",
+		})
+	})
+
+	router.GET("/part-number-decoder", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "part-number-decoder.html", gin.H{
+			"content": "Fastener Tool",
+		})
+	})
+
+	router.GET("/curve-generator", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "curve-generator.html", gin.H{
+			"content": "Curve Generator",
+		})
+	})
+
+	router.GET("/part-number-generator", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "part-number-generator.html", gin.H{
+			"content": "Part Number Generator",
 		})
 	})
 

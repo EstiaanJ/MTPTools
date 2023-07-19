@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+  <meta charset="utf-8">
+  <title>Stalker Major Part Decode Tool</title>
+  <style>
+  .output {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        } 
+</style>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+    <div class="container">
+      <div class="row">
+        <div class="one-half column" style="margin-top: 5%">
+          <h4>Stalker Major Part Decode Tool</h4>
+          <h1>Part Number Decoder</h1>
+          <label for="partNumber">Enter part number:</label>
+          <input type="text" id="partNumber" oninput="decodeNumber()">
+          <div class="output">
+              <table id="outputTable">
+                  <tr>
+                      <th>Option Type</th>
+                      <th>Code</th>
+                      <th>Option</th>
+                  </tr>
+              </table>
+          </div>
+      
+          <script>
+              function decodeNumber() {
+                  const partNumberInput = document.getElementById("partNumber");
+                  const partNumber = partNumberInput.value;
+                  const outputTable = document.getElementById("outputTable");
+  
+                  // Fill in the appropriate cases and descriptions for each function
+                  const seriesCode = partNumber.slice(0,4);
+                  const seriesDescription = getSeries(seriesCode);
+
+                  const componentCode = partNumber.slice(4, 6);
+                  const componentDescription = getComponentDescription(componentCode);
+  
+                  const modCode = partNumber.slice(6, 8);
+                  const modDescription = getModule(modCode);
+  
+                  const materialCode = partNumber.slice(8, 10);
+                  const materialDescription = getMaterial(materialCode);
+  
+                  const sealingCode = partNumber.slice(10, 11);
+                  const sealingDescription = getSealing(sealingCode);
+  
+                  const impellerStyleCode = partNumber.slice(11, 12);
+                  const impellerStyleDescription = getImpellerStyle(impellerStyleCode);
+  
+                  const wearRingOptionsCode = partNumber.slice(12, 13);
+                  const wearRingOptionsDescription = getWearRingOptions(wearRingOptionsCode);
+  
+                  const flangeOptionsCode = partNumber.slice(13, 14);
+                  const flangeOptionsDescription = getFlangeOptions(flangeOptionsCode);
+  
+                  const internalCoatingCode = partNumber.slice(14, 15);
+                  const internalCoatingDescription = getInternalCoating(internalCoatingCode);
+  
+                  const sealFlushingCode = partNumber.slice(15, 16);
+                  const sealFlushingDescription = getSealFlushing(sealFlushingCode);
+  
+                  const otherOptionsCode = partNumber.slice(16, 17);
+                  const otherOptionsDescription = getOtherOptions(otherOptionsCode);
+  
+                  // Update the output table
+                  outputTable.innerHTML = `
+                      <tr>
+                          <th>Option Type</th>
+                          <th>Code</th>
+                          <th>Option</th>
+                      </tr>
+                      <tr>
+                          <td>Series</td>
+                          <td>${seriesCode}</td>
+                          <td>${seriesDescription} Series</td>
+                        </tr>
+                    <tr>
+                        <td>Component</td>
+                        <td>${componentCode}</td>
+                        <td>${componentDescription}</td>
+                    </tr>
+                    <tr>
+                        <td>Module No.</td>
+                        <td>${modCode}</td>
+                        <td>${modDescription}</td>
+                    </tr>
+                    <tr>
+                        <td>Material</td>
+                        <td>${materialCode}</td>
+                        <td>${materialDescription}</td>
+                    </tr>
+                    <tr>
+                        <td>Sealing</td>
+                        <td>${sealingCode}</td>
+                        <td>${sealingDescription}</td>
+                    </tr>
+                    <tr>
+                        <td>Impeller Style</td>
+                        <td>${impellerStyleCode}</td>
+                        <td>${impellerStyleDescription}</td>
+                    </tr>
+                    <tr>
+                        <td>Wear-Ring Options</td>
+                        <td>${wearRingOptionsCode}</td>
+                        <td>${wearRingOptionsDescription}</td>
+                    </tr>
+                    <tr>
+                        <td>Flange Options</td>
+                        <td>${flangeOptionsCode}</td>
+                        <td>${flangeOptionsDescription}</td>
+                    </tr>
+                    <tr>
+                        <td>Internal Coating</td>
+                        <td>${internalCoatingCode}</td>
+                        <td>${internalCoatingDescription}</td>
+                    </tr>
+                    <tr>
+                        <td>Seal Flushing</td>
+                        <td>${sealFlushingCode}</td>
+                        <td>${sealFlushingDescription}</td>
+                    </tr>
+                    <tr>
+                        <td>Other Options</td>
+                        <td>${otherOptionsCode}</td>
+                        <td>${otherOptionsDescription}</td>
+                    </tr>
+                `;
+            }
+
+            function getSeries(code) {
+                let description = '';
+                switch (code) {
+                    case '1900':
+                        description = '50x32-160'
+                        break;
+                    case '3800':
+                        description = '65x50-160'
+                        break;
+                    case '4500':
+                        description = '80x65-160'
+                        break;
+                    case '2000':
+                        description = '50x32-200'
+                        break;
+                    case '2800':
+                        description = '65x40-200'
+                        break;
+                    case '3900':
+                        description = '80x50-200'
+                        break;
+                    case '5500':
+                        description = '100x80-160'
+                        break;
+                    case '4600':
+                        description = '100x65-200'
+                        break;
+                    case '6200':
+                        description = '25x100-200'
+                        break;
+                    case '7400':
+                        description = '150x150-200'
+                        break;
+                    case '2900':
+                        description = '65x40-250'
+                        break;
+                    case '4000':
+                        description = '80x50-250'
+                        break;
+                    case '4700':
+                        description = '100x65-250'
+                        break;
+                    case '3000':
+                        description = '65x40-315'
+                        break;
+                    case '4100':
+                        description = '80x50x315'
+                        break;
+                    case '6300':
+                        description = '125x100-250'
+                        break;
+                    case '7000':
+                        description = '150x125-250'
+                        break;
+                    case '4800':
+                        description = '100x65-315'
+                        break;
+                    case '6400':
+                        description = '125x100-315'
+                        break;
+                    case '7100':
+                        description = '150x125-315'
+                        break;
+                    case '5600':
+                        description = '125x80-400'
+                        break;
+                    case '6500':
+                        description = '125x100-400'
+                        break;
+                    case '7200':
+                        description = '150x125-400'
+                        break;
+                    case '8200':
+                        description = '200x150-315'
+                        break;
+                    case '9000':
+                        description = '250x200-315'
+                        break;
+                    case '8300':
+                        description = '200x150-400'
+                        break;
+                    case '9100':
+                        description = '250x250-400'
+                        break;
+                    case '6600':
+                        description = '125x100-500'
+                        break;
+                    case '8400':
+                        description = '200x150-500'
+                        break;
+                    case '9200':
+                        description = 'WIP'
+                        break;
+                    case '9300':
+                        description = '300x250-400'
+                        break;
+                    default:
+                        description = 'Unknown'
+                }
+                return description;
+            }
+
+            // Add your cases and descriptions for each function
+            function getComponentDescription(code) {
+                let description = '';
+
+                switch (code) {
+                    case '07':
+                        description = 'Volute';
+                        break;
+                    case '13':
+                        description = 'Impeller';
+                        break;
+                    case '39':
+                        description = 'Backplate';
+                        break;
+                    case '45':
+                        description = 'Wear Ring Volute';
+                        break;
+                    case '46':
+                        description = "Wear Ring Back Plate"
+                    // Add more cases as needed
+                    default:
+                        description = 'Unknown Component';
+                }
+
+                return description;
+            }
+
+            function getModule(code) {
+                let description = '';
+
+                switch (code) {
+                    case '16':
+                        description = 'ISO Mod 1';
+                        break;
+                    case '17':
+                        description = 'ISO Mod 2';
+                        break;
+                    case '18':
+                        description = 'ISO Mod 3';
+                        break;
+                    case '19':
+                        description = 'ISO Mod 4';
+                        break;
+                    case '39':
+                        description = 'SHD';
+                        break;
+                    default:
+                        description = 'Unknown Module';
+                }
+
+                return description;
+            }
+
+            function getMaterial(code) {
+                let description = '';
+
+                switch (code) {
+                    case '01':
+                        description = 'Cast Iron';
+                        break;
+                    case '02':
+                        description = 'PB2 Zinc Free Bronze';
+                        break;
+                    case '04':
+                        description = 'SG (Ductile Iron)';
+                        break;
+                    case '06':
+                        description = '316 Stainless Steel';
+                        break;
+                    case '08':
+                        description = '27% High Chrome Iron';
+                        break;
+                    case '11':
+                        description = 'Austenitic Iron';
+                        break;
+                    case '34':
+                        description = 'H3C Stainless Steel';
+                        break;
+                    case '15':
+                        description = 'Duplex Stainless Steel CD4MCu';
+                        break;
+                    case 'D2':
+                        description = 'Stainless Steel A890 4A';
+                        break;
+                    case '27':
+                        description = 'Aluminium Bronze';
+                        break;
+                    case '03':
+                        description = 'LG2 Bronze';
+                        break;
+                    default:
+                        description = 'Unknown Material';
+                }
+
+                return description;
+            }
+
+            function getSealing(code) {
+                let description = '';
+
+                switch (code) {
+                    case 'z':
+                        description = 'N/A';
+                        break;
+                    case '-':
+                        description = 'N/A';
+                        break;
+                    case '0':
+                        description = 'N/A';
+                        break;
+                    case '1':
+                        description = 'Suitable for Gland Packing';
+                        break;
+                    case '2':
+                        description = 'Suitable for Internal Mechanical Seal';
+                        break;
+                    case '3':
+                        description = 'Suitable for Cartridge Mechanical';
+                        break;
+                    default:
+                        description = 'Unknown Sealing';
+                }
+
+                return description;
+            }
+
+            function getImpellerStyle(code) {
+                let description = '';
+
+                switch (code) {
+                    case 'z':
+                        description = 'N/A';
+                        break;
+                    case '-':
+                        description = 'N/A';
+                        break;
+                    case '0':
+                        description = 'N/A';
+                        break;
+                    case '1':
+                        description = 'Single Spigot';
+                        break;
+                    case '2':
+                        description = 'Double Spigot';
+                        break;
+                    case '3':
+                        description = 'Open';
+                        break;
+                    case '4':
+                        description = 'Open';
+                        break;
+                    case '5':
+                        description = 'Vortex';
+                        break;
+                    default:
+                        description = 'Unknown Impeller Style'
+                }
+
+                return description;
+            }
+
+            function getWearRingOptions(code) {
+                let description = '';
+
+                switch (code) {
+                    case 'z':
+                        description = 'N/A';
+                        break;
+                    case '-':
+                        description = 'N/A';
+                        break;
+                    case '0':
+                        description = 'No Wear Ring Fitted, or NA';
+                        break;
+                    case '1':
+                        description = 'Machined for Wear Ring';
+                        break;
+                    case '2':
+                        description = '27% High Chrome Iron Wear Ring Fitted';
+                        break;
+                    case '3':
+                        description = 'LG2 Wear Ring Fitted';
+                        break;
+                    case '4':
+                        description = '316 Stainless Steel Wear Ring Fitted';
+                        break;
+                    case '5':
+                        description = 'Duplex Stainless Steel Wear Ring FItted';
+                        break;
+                    case '6':
+                        description = 'Stainless Steel Wear Ring Fitted';
+                        break;
+                    case '7':
+                        description = 'Bronze Wear Ring';
+                        break;
+                    case '8':
+                        description = 'Wear Ring';
+                        break;
+                    default:
+                        description = 'Unknown Wear Ring Option'
+                }
+
+                return description;
+            }
+
+            function getFlangeOptions(code) {
+                let description = '';
+
+                switch (code) {
+                    case 'z':
+                        description = 'N/A';
+                        break;
+                    case '-':
+                        description = 'N/A';
+                        break;
+                    case '0':
+                        description = 'Table E or N/A';
+                        break;
+                    case '1':
+                        description = 'ANSI Class 150 Raised Face';
+                        break;
+                    case '2':
+                        description = 'ANSI Class 150 Flat Face';
+                        break;
+                    case '3':
+                        description = 'DIN PN 16 Raised Face';
+                        break;
+                    case '4':
+                        description = 'AS4087 Water Works';
+                        break;
+                    case '5':
+                        description = 'Table H';
+                        break;
+                    case '6':
+                        description = 'Table D';
+                        break;
+                    default:
+                        description = 'Unknown Flange Options'
+                }
+
+                return description;
+            }
+
+            function getInternalCoating(code) {
+                let description = '';
+
+                switch (code) {
+                    case 'z':
+                        description = 'N/A';
+                        break;
+                    case '-':
+                        description = 'N/A';
+                        break;
+                    case '0':
+                        description = 'No Internal Coating, or NA';
+                        break;
+                    case '1':
+                        description = 'Standard Ceramic';
+                        break;
+                    case '2':
+                        description = 'Epigen 1311 Ceramic';
+                        break;
+                    case '3':
+                        description = 'Urethan Internal Coated';
+                        break;
+                    default:
+                        description = 'Unknown Internal Coating'
+                }
+
+                return description;
+            }
+
+            function getSealFlushing(code) {
+                switch (code) {
+                    case 'z':
+                        description = 'N/A';
+                        break;
+                    case '-':
+                        description = 'N/A';
+                        break;
+                    case '0':
+                        description = 'Standard with flushing port, or NA';
+                        break;
+                    case '3':
+                        description = 'Vertical Mount Seal Chamber';
+                        break;
+                    default:
+                        description = 'Unknown Seal Flushing'
+                }
+
+                return description;
+            }
+
+            function getOtherOptions(code) {
+                switch (code) {
+                    case 'z':
+                        description = 'N/A';
+                        break;
+                    case '-':
+                        description = 'N/A';
+                        break;
+                    case '0':
+                        description = 'NA';
+                        break;
+                    case '1':
+                        description = 'Casing Drain';
+                        break;
+                    case '2':
+                        description = 'Casing Vent';
+                        break;
+                    default:
+                        description = 'Unknown Other Option'
+                }
+
+                return description;
+            }
+        </script>
+        <p></a>.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
