@@ -80,6 +80,152 @@ input[type="text"] {
             text-align: center;
         }
     </style>
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Part Code Generator</h1>
+        <form onsubmit="event.preventDefault(); generatePartCode();">
+            <label for="series">Series:</label>
+            <select id="series"onchange="updateOptions();">
+                <option value="1900">1900 Series 50x32-160</option>
+                <option value="3800">3800 Series 65x50-160</option>
+                <option value="4500">4500 Series 80x65-160</option>
+                <option value="2000">2000 Series 50x32-200</option>
+                <option value="2800">2800 Series 65x40-200</option>
+                <option value="3900">3900 Series 80x50-200</option>
+                <option value="5500">5500 Series 100x80-160</option>
+                <option value="4600">4600 Series 100x65-200</option>
+                <option value="6200">6200 Series 125x100-200</option>
+                <option value="7400">7400 Series 150x150-200</option>
+                <option value="2900">2900 Series 65x40-250</option>
+                <option value="4000">4000 Series 80x50-250</option>
+                <option value="4700">4700 Series 100x65-250</option>
+                <option value="3000">3000 Series 65x40-315</option>
+                <option value="4100">4100 Series 80x50x315</option>
+                <option value="6300">6300 Series 125x100-250</option>
+                <option value="7000">7000 Series 150x125-250</option>
+                <option value="4800">4800 Series 100x65-315</option>
+                <option value="6400">6400 Series 125x100-315</option>
+                <option value="7100">7100 Series 150x125-315</option>
+                <option value="5600">5600 Series 125x80-400</option>
+                <option value="6500">6500 Series 125x100-400</option>
+                <option value="7200">7200 Series 150x125-400</option>
+                <option value="8200">8200 Series 200x150-315</option>
+                <option value="9000">9000 Series 250x200-315</option>
+                <option value="8300">8300 Series 200x150-400</option>
+                <option value="9100">9100 Series 250x250-400</option>
+                <option value="6600">6600 Series 125x100-500</option>
+                <option value="8400">8400 Series 200x150-500</option>
+                <option value="9200">9200 Series WIP</option>
+                <option value="9300">9300 Series 300x250-400</option>
+            </select>
+    
+            <label for="component">Component:</label>
+            
+            <select id="component" onchange="updateOptions();">
+                <option value="07">Volute</option>
+                <option value="13">Impeller</option>
+                <option value="39">Backplate</option>
+                <option value="45">Wear Ring Volute</option>
+                <option value="46">Wear Ring Backplate</option>
+            </select>
+    
+            <label for="module">Module:</label>
+            <select id="module">
+                <option value="16">ISO Mod 1</option>
+                <option value="17">ISO Mod 2</option>
+                <option value="19">ISO Mod 4</option>
+                <option value="39">Super Heavy Duty</option>
+            </select>
+    
+            <label for="material">Material:</label>
+            <select id="material" onchange="updateOptions();">
+                <option value="01">Cast Iron</option>
+                <option value="02">PB2 Zinc Free Bronze</option>
+                <option value="04">SG (Ductile Iron)</option>
+                <option value="06">316 Stainless Steel</option>
+                <option value="08">27% High Chrome</option>
+                <option value="11">Austenitic Iron</option>
+                <option value="34">H3C Stainless Steel</option>
+                <option value="15">Duplex Stainless Steel CD4MCu</option>
+                <option value="D2">Super Duplex Stainless Steel A890 4A</option>
+                <option value="27">Aluminium Bronze</option>
+                <option value="03">LG2 Bronze</option>
+            </select>
+    
+            <label for="sealing-options">Sealing Options:</label>
+            <select id="sealing-options">
+                <option value="Z">Not Applicable</option>
+                <option value="1">Glad Packed</option>
+                <option value="2">Mechanical Seal</option>
+                <option value="3">Cartridge Seal</option>
+            </select>
+    
+            <label for="impeller-style">Impeller Style:</label>
+            <select id="impeller-style">
+                <option value="Z">Not Applicable</option>
+                <option value="1">Single Spigot</option>
+                <option value="2">Double Spigot</option>
+                <option value="3">Open</option>
+                <option value="4">Vortex</option>
+            </select>
+    
+            <label for="wear-ring">Wear Ring Options:</label>
+            <select id="wear-ring">
+                <option value="Z">Not Applicable</option>
+                <option value="0">No Wear Ring</option>
+                <option value="1">Machined For Wear Ring</option>
+                <option value="2">27% High Chrome Iron Wear Ring</option>
+                <option value="3">LG2 Wear Ring</option>
+                <option value="4">316 Stainless Steel Wear Ring</option>
+                <option value="5">Duplex Stainless Steel Wear Ring</option>
+                <option value="6">Stainless Steel Wear Ring</option>
+                <option value="7">Bronze Wear Ring</option>
+                <option value="8">Wear Ring</option>
+            </select>
+    
+            <label for="flange">Flange Options:</label>
+            <select id="flange">
+                <option value="Z">Not Applicable</option>
+                <option value="0">Table E</option>
+                <option value="1">ANSI Class 150 Raised Face</option>
+                <option value="2">ANSI Class 150 Flat Face</option>
+                <option value="3">ANSI Class 300 Raised Face</option>
+                <option value="4">ANSI Class 300 Flat Face</option>
+                <option value="5">DIN PN16 Raised Face</option>
+                <option value="6">AS 4087 Water Works</option>
+                <option value="7">Table H</option>
+                <option value="8">Table D</option>
+            </select>
+    
+            <label for="internal-coatings">Internal Coatings:</label>
+            <select id="internal-coatings">
+                <option value="Z">Not Applicable</option>
+                <option value="0">No Internal Coating</option>
+                <option value="1">Standard Ceramic</option>
+                <option value="2">Epigen 1311 Ceramic</option>
+                <option value="3">Urethane Internal Coated</option>
+            </select>
+    
+            <label for="seal-flushing">Seal Flushing:</label>
+            <select id="seal-flushing">
+                <option value="Z">Not Applicable</option>
+                <option value="0">Standard With Flushing Port</option>
+                <option value="3">Vertical Mount Seal Chamber</option>
+            </select>
+    
+            <label for="other">Other Options:</label>
+            <select id="other">
+                <option value="Z">Not Applicable</option>
+                <option value="1">Casing Drain</option>
+                <option value="3">Casing Vent</option>
+            </select>
+    
+            <button type="submit">Generate Part Code</button>
+        </form>
+        <p id="partCode"></p>
+    </div>
     <script>
         function generatePartCode() {
             const seriesCode = document.getElementById('series').value;
@@ -96,121 +242,49 @@ input[type="text"] {
             const partCode = seriesCode + componentCode + moduleCode + materialCode + sealingCode + impellerStyleCode + wearRingCode + flangeCode + internalCoatingsCode + sealflushingCode + otherCode;
             document.getElementById('partCode').innerText = 'Generated Part Code: ' + partCode;
         }
-    </script>
-</head>
-<body>
-    <div class="container">
-        <h1>Part Code Generator</h1>
-    <form onsubmit="event.preventDefault(); generatePartCode();">
-            <label for="series">Series:</label>
-            <input type="text" id="series" placeholder="Enter series" />
 
-        <label for="component">Component:</label>
-        
-        <select id="component">
-            <option value="07">Volute</option>
-            <option value="13">Impeller</option>
-            <option value="39">Backplate</option>
-            <option value="45">Wear Ring Volute</option>
-            <option value="46">Wear Ring Backplate</option>
-        </select>
+        function updateOptions() {
+        const seriesDropdown = document.getElementById("series");
+        const moduleDropdown = document.getElementById("module");
+        const componentDropdown = document.getElementById("component")
+        const selectedComponent = componentDropdown.value;
+        const selectedSeries = seriesDropdown.value;
 
-        <label for="module">Module:</label>
-        <select id="module">
-            <option value="16">ISO Mod 1</option>
-            <option value="17">ISO Mod 2</option>
-            <option value="19">ISO Mod 4</option>
-            <option value="39">Super Heavy Duty</option>
-        </select>
+        // Generate dynamic HTML options for the module dropdown based on the selected series
+        let moduleOptionsHTML = '';
 
-        <label for="material">Material:</label>
-        <select id="material">
-            <option value="01">Cast Iron</option>
-            <option value="02">PB2 Zinc Free Bronze</option>
-            <option value="04">SG (Ductile Iron)</option>
-            <option value="06">316 Stainless Steel</option>
-            <option value="08">27% High Chrome</option>
-            <option value="11">Austenitic Iron</option>
-            <option value="34">H3C Stainless Steel</option>
-            <option value="15">Duplex Stainless Steel CD4MCu</option>
-            <option value="D2">Super Duplex Stainless Steel A890 4A</option>
-            <option value="27">Aluminium Bronze</option>
-            <option value="03">LG2 Bronze</option>
-        </select>
+        switch (selectedSeries) {
+            case "1900":
+                moduleOptionsHTML += '<option value="16">ISO Mod 1</option>';
+                break;
+            case "5600":
+                moduleOptionsHTML += '<option value="19">ISO Mod 4</option>';
+                moduleOptionsHTML += '<option value="39">Super Heavy Duty</option>';
+                break;
+            // Add other cases as per your requirements
+            // ...
+            default:
+                // Add default options if necessary
+                break;
+        }
 
-        <label for="sealing-options">Sealing Options:</label>
-        <select id="sealing-options">
-            <option value="Z">Not Applicable</option>
-            <option value="1">Glad Packed</option>
-            <option value="2">Mechanical Seal</option>
-            <option value="3">Cartridge Seal</option>
-        </select>
+        const flangeDropdown = document.getElementById("flange");
+        const icDropdown = document.getElementById("internal-coatings")
+        if (selectedComponent === "13") {
+            flangeDropdown.disabled = true;
+            flangeDropdown.selectedIndex = 0; // Reset to the default option
+            icDropdown.disabled = true;
+            icDropdown.selectedIndex = 0;
+            
+        } else {
+            flangeDropdown.disabled = false;
+        }
 
-        <label for="impeller-style">Impeller Style:</label>
-        <select id="impeller-style">
-            <option value="Z">Not Applicable</option>
-            <option value="1">Single Spigot</option>
-            <option value="2">Double Spigot</option>
-            <option value="3">Open</option>
-            <option value="4">Vortex</option>
-        </select>
+        // Set the innerHTML of the module dropdown with the generated options
+        moduleDropdown.innerHTML = moduleOptionsHTML;
+    }
 
-        <label for="wear-ring">Wear Ring Options:</label>
-        <select id="wear-ring">
-            <option value="Z">Not Applicable</option>
-            <option value="0">No Wear Ring</option>
-            <option value="1">Machined For Wear Ring</option>
-            <option value="2">27% High Chrome Iron Wear Ring</option>
-            <option value="3">LG2 Wear Ring</option>
-            <option value="4">316 Stainless Steel Wear Ring</option>
-            <option value="5">Duplex Stainless Steel Wear Ring</option>
-            <option value="6">Stainless Steel Wear Ring</option>
-            <option value="7">Bronze Wear Ring</option>
-            <option value="8">Wear Ring</option>
-        </select>
-
-        <label for="flange">Flange Options:</label>
-        <select id="flange">
-            <option value="Z">Not Applicable</option>
-            <option value="0">Table E</option>
-            <option value="1">ANSI Class 150 Raised Face</option>
-            <option value="2">ANSI Class 150 Flat Face</option>
-            <option value="3">ANSI Class 300 Raised Face</option>
-            <option value="4">ANSI Class 300 Flat Face</option>
-            <option value="5">DIN PN16 Raised Face</option>
-            <option value="6">AS 4087 Water Works</option>
-            <option value="7">Table H</option>
-            <option value="8">Table D</option>
-        </select>
-
-        <label for="internal-coatings">Internal Coatings:</label>
-        <select id="internal-coatings">
-            <option value="Z">Not Applicable</option>
-            <option value="0">No Internal Coating</option>
-            <option value="1">Standard Ceramic</option>
-            <option value="2">Epigen 1311 Ceramic</option>
-            <option value="3">Urethane Internal Coated</option>
-        </select>
-
-        <label for="seal-flushing">Seal Flushing:</label>
-        <select id="seal-flushing">
-            <option value="Z">Not Applicable</option>
-            <option value="0">Standard With Flushing Port</option>
-            <option value="3">Vertical Mount Seal Chamber</option>
-        </select>
-
-        <label for="other">Other Options:</label>
-        <select id="other">
-            <option value="Z">Not Applicable</option>
-            <option value="1">Casing Drain</option>
-            <option value="3">Casing Vent</option>
-        </select>
-
-
-        <button type="submit">Generate Part Code</button>
-    </form>
-    <p id="partCode"></p>
-    </div>
-    
+        updateOptions();
+    </script>    
 </body>
 </html>
