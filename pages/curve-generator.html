@@ -173,6 +173,80 @@
     'showlegend': false // Hide from legend
     };
 
+    fiftyFivePercent = {
+    'type': 'scatter',
+    'mode': 'lines',
+    'x': [3.59316, 3.47909, 3.44106, 3.43473, 3.44740, 3.50444],
+    'y': [48.73134, 42.83582, 37.61194, 33.95522, 31.34328, 29.02985],
+    'line': {'shape': 'spline', 'smoothing': 1, 'color':'black', 'dash':'dash'},
+    'name': '55%',
+    'showlegend': false // Hide from legend
+    };
+
+    fiftyPercent = {
+    'type': 'scatter',
+    'mode': 'lines',
+    'x': [2.99747, 2.94677, 2.89607, 2.84537, 2.82636, 2.82636, 2.83270, 2.85171, 2.88340],
+    'y': [50.44776, 48.65672, 45.82090, 43.28358, 40.00000, 38.05970, 34.17910, 31.41791, 29.40299],
+    'line': {'shape': 'spline', 'smoothing': 1, 'color':'black', 'dash':'dash'},
+    'name': '50%',
+    'showlegend': false // Hide from legend
+    };
+
+    fortyPercent = {
+    'type': 'scatter',
+    'mode': 'lines',
+    'x': [2.00887, 1.97085, 1.94550, 1.93283, 1.92649, 1.92649],
+    'y': [49.77612, 47.46269, 45.07463, 40.22388, 35.00000, 29.40299],
+    'line': {'shape': 'spline', 'smoothing': 1, 'color':'black', 'dash':'dash'},
+    'name': '40%',
+    'showlegend': false // Hide from legend
+    };
+
+    thirtyPercent = {
+    'type': 'scatter',
+    'mode': 'lines',
+    'x': [1.23574, 1.19772, 1.15970, 1.14702, 1.17237],
+    'y': [49.55224, 45.14925, 40.22388, 35.14925, 29.32836],
+    'line': {'shape': 'spline', 'smoothing': 1, 'color':'black', 'dash':'dash'},
+    'name': '30%',
+    'showlegend': false // Hide from legend
+    };
+
+
+
+
+
+    kw2 = {
+    'type': 'scatter',
+    'mode': 'lines',
+    'x': [1.79975, 2.58555, 3.43473, 4.23321, 4.98733, 5.39924, 5.91255],
+    'y': [49.40299, 43.58209, 37.46269, 31.86567, 28.05970, 25.89552, 22.83582],
+    'line': {'shape': 'spline', 'smoothing': 1, 'color':'red', 'dash':'dot'},
+    'name': '2.2kw',
+    'showlegend': false // Hide from legend
+    };
+
+    kw3 = {
+    'type': 'scatter',
+    'mode': 'lines',
+    'x': [3.48542, 4.63245, 5.60836, 6.31179, 7.12294],
+    'y': [47.91045, 41.26866, 34.70149, 28.95522, 21.94030],
+    'line': {'shape': 'spline', 'smoothing': 1, 'color':'red', 'dash':'dot'},
+    'name': '3kw',
+    'showlegend': false // Hide from legend
+    };
+
+    kw6 = {
+    'type': 'scatter',
+    'mode': 'lines',
+    'x': [5.82383, 6.50190, 6.98986, 7.43346, 7.67427],
+    'y': [44.32836, 37.98507, 33.80597, 30.82090, 29.17910],
+    'line': {'shape': 'spline', 'smoothing': 1, 'color':'red', 'dash':'dot'},
+    'name': '6kw',
+    'showlegend': false // Hide from legend
+    };
+
 
 
      var layout = {
@@ -234,11 +308,79 @@
                 text: '61%', // Title for the annotation
                 showarrow: false // Hide arrow
             },
+
+            {
+                x: 1.2,   // X coordinate of the annotation
+                y: 27,  // Y coordinate of the annotation
+                text: '30%', // Title for the annotation
+                showarrow: false // Hide arrow
+            },
+
+            {
+                x: 1.95,   // X coordinate of the annotation
+                y: 27,  // Y coordinate of the annotation
+                text: '40%', // Title for the annotation
+                showarrow: false // Hide arrow
+            },
+
+            {
+                x: 2.9,   // X coordinate of the annotation
+                y: 27,  // Y coordinate of the annotation
+                text: '50%', // Title for the annotation
+                showarrow: false // Hide arrow
+            },
+
+            {
+                x: 3.6,   // X coordinate of the annotation
+                y: 26.5,  // Y coordinate of the annotation
+                text: '55%', // Title for the annotation
+                showarrow: false // Hide arrow
+            },
+
+            {
+                x: 4.3,   // X coordinate of the annotation
+                y: 26,  // Y coordinate of the annotation
+                text: '58%', // Title for the annotation
+                showarrow: false // Hide arrow
+            },
+
+            {
+                x: 5.0,   // X coordinate of the annotation
+                y: 25.3,  // Y coordinate of the annotation
+                text: '60%', // Title for the annotation
+                showarrow: false // Hide arrow
+            },
+
+
+            {
+                x: 1.8,   // X coordinate of the annotation
+                y: 51,  // Y coordinate of the annotation
+                text: '2.2kw', // Title for the annotation
+                showarrow: false // Hide arrow
+            },
+
+            {
+                x: 3.5,   // X coordinate of the annotation
+                y: 50,  // Y coordinate of the annotation
+                text: '3kw', // Title for the annotation
+                showarrow: false // Hide arrow
+            },
+            {
+                x: 5.8,   // X coordinate of the annotation
+                y: 46.5,  // Y coordinate of the annotation
+                text: '6kw', // Title for the annotation
+                showarrow: false // Hide arrow
+            },
+            
         ]
      }
 
 
-     var data = [mm146, mm155, mm164, mm173, mm182, sixtyTwoPercent, sixtyOnePercent, sixtyPercent, fiftyEightPercent, sixtyTwoPointFivePercent];
+     var data = 
+     [mm146, mm155, mm164, mm173, mm182, 
+     sixtyTwoPercent, sixtyOnePercent, sixtyPercent, fiftyEightPercent, 
+     sixtyTwoPointFivePercent, fiftyFivePercent, fiftyPercent, fortyPercent, thirtyPercent,
+     kw2, kw3, kw6];
 
      Plotly.newPlot('myDiv', data, layout);
 
