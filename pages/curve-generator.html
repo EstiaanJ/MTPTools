@@ -1,5 +1,6 @@
 <head>
     <script src='https://cdn.plot.ly/plotly-2.20.0.min.js'></script>
+    <script src='curves.js'></script>
     <title>MTP Pump Curve Tool</title>
     <style>
         .table-container {
@@ -9,84 +10,238 @@
         .table-container table {
             margin-right: 20px;
         }
+
+
     </style>
 </head>
 
 <body>
-    <h1>Malcolm Thompson Pumps</h1>
-    <h2>Pump Curve Tool</h2>
-    <div class="table-container">
-        <div>
-            <h3>Original Characteristics</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Flow (L/s)</th>
-                        <th>Head (m)</th>
-                        <th>Efficiency (%)</th>
-                        <th>Power (kW)</th>
-                    </tr>
-                </thead>
-                <tbody id="characteristicsTable">
-                </tbody>
-            </table>
-            <label for="originalSpeed">Original Speed:</label>
-            <input type="text" id="originalSpeed" oninput="decodeNumber()">
-        </div>
-        <div>
-            <h3>New Characteristics</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Flow (L/s)</th>
-                        <th>Head (m)</th>
-                        <th>Efficiency (%)</th>
-                        <th>Power (kW)</th>
-                    </tr>
-                </thead>
-                <tbody id="newCharacteristicsTable">
-                </tbody>
-            </table>
-            <label for="newSpeed">New Speed:</label>
-            <input type="text" id="newSpeed" oninput="decodeNumber()">
-        </div>
-    </div>
-    <div id='myDiv'></div>
-    <script>
-        var originalTable = document.getElementById("characteristicsTable");
-        var newTable = document.getElementById("newCharacteristicsTable");
-        for (var i = 0; i < 10; i++) {
-            var originalRow = originalTable.insertRow();
-            var newRow = newTable.insertRow();
-            for (var j = 0; j < 4; j++) {
-                var originalCell = originalRow.insertCell();
-                var newCell = newRow.insertCell();
-                var input = document.createElement("input");
-                input.type = "text";
-                originalCell.appendChild(input.cloneNode());
-                newCell.appendChild(input);
-            }
-        }
-        
-        
-        originalCurve = {
-            'type': 'scatter',
-            'mode': 'lines',
-            'x': [1, 2, 3, 4, 5],
-            'y': [4, 6, 2, 7, 8],
-            'line': {'shape': 'spline', 'smoothing': 1.3}
+<h1>Malcolm Thompson Pumps</h1>
+<h2>Pump Curve Tool</h2>
+<div id='myDiv'style="width: 1030px; height: 700px;"></div>></div>
+<script>
+    mm146 = {
+        'type': 'scatter',
+        'mode': 'lines',
+        'x': [ 0, 0.73722,
+    0.99704,
+    1.23152,
+    1.49768,
+    1.7575,
+    2.00465,
+    2.23278,
+    2.49894,
+    2.80946,
+    2.99324,
+    3.27207,
+    3.50021,
+    3.76003,
+    3.99451,
+    4.27334,
+    4.50782,
+    4.76764,
+    4.98944,
+    5.26193,
+    5.49007,
+    5.74356,
+    5.99704,
+    6.23785,
+    6.82087,
+    6.99197
+  ],
+  'y': [
+    30.03731,
+    30.41045,
+    30.5597,
+    30.5597,
+    30.63433,
+    30.5597,
+    30.5597,
+    30.33582,
+    30.11194,
+    29.66418,
+    29.51493,
+    29.21642,
+    29.06716,
+    28.76866,
+    28.47015,
+    28.09701,
+    27.87313,
+    27.42537,
+    26.97761,
+    26.3806,
+    25.85821,
+    25.03731,
+    23.99254,
+    22.79851,
+    19.06716,
+    17.94776
+  ],
+    'line': {'shape': 'spline', 'smoothing': 1.3,'color':'blue'},
+    'name': '146mm',
+    'showlegend': false // Hide from legend
+    };
+
+     mm155 = {
+         'type': 'scatter',
+         'mode': 'lines',
+         'x': [0, 0.59569, 0.98859, 1.50824, 2.00253, 2.50951, 2.99113, 3.51077, 3.97338, 4.50570, 4.99366, 5.48796, 6.00127, 6.50190, 6.98986, 7.28771],
+         'y': [ 33.43284, 34.10448, 34.55224, 34.47761, 34.47761, 34.32836, 34.02985, 33.58209, 33.13433, 32.16418, 31.04478, 29.70149, 27.91045, 26.19403, 24.10448, 21.94030],
+         'line': {'shape': 'spline', 'smoothing': 1.3, 'color':'blue'},
+         'name': '155mm',
+         'showlegend': false // Hide from legend
         };
-      
-        newCurve = {
-            'type': 'scatter',
-            'mode': 'lines',
-            'x': [1, 2, 3, 4, 5],
-            'y': [4, 3, 2.2, 6, 9],
-            'line': {'shape': 'spline', 'smoothing': 1.3}
-        };
-      
-        var data = [originalCurve, newCurve];
-      
-        Plotly.newPlot('myDiv', data);
-    </script>
+
+     mm164 = {
+         'type': 'scatter',
+         'mode': 'lines',
+         'x': [0, 0.62104, 1.00127, 1.50190, 2.00887, 2.49049, 2.98479, 3.49810, 4.01141, 4.51204, 5.00634, 5.49430, 5.99493, 6.48923, 6.98986, 7.49683],
+         'y': [37.98507, 38.73134, 38.95522, 39.25373, 38.95522, 38.50746, 37.98507, 37.53731, 37.01493, 36.34328, 35.59701, 34.47761, 33.05970, 31.64179, 29.40298, 26.64179],
+         'line': {'shape': 'spline', 'smoothing': 1.3, 'color':'blue'},
+         'name': '164mm',
+         'showlegend': false // Hide from legend
+    };
+
+     mm173 = {
+     'type': 'scatter',
+     'mode': 'lines',
+     'x': [0, 0.68441, 0.98859, 1.49556, 2.00253, 2.50951, 2.99747, 3.50444, 3.98606, 4.48669, 5, 5.48796, 6.00760, 6.48923, 7.00253, 7.49683, 7.75665],
+     'y': [42.46269, 43.20896, 43.50746, 43.95522, 44.02985, 43.65672, 42.98507, 42.61194, 42.08955, 41.04478, 40.14925, 39.17910, 37.91045, 36.49254, 34.62687, 31.94030, 30.37313],
+     'line': {'shape': 'spline', 'smoothing': 1.3, 'color':'blue'},
+     'name': '173mm',
+     'showlegend': false // Hide from legend
+    };
+
+    mm182 = {
+     'type': 'scatter',
+     'mode': 'lines',
+     'x': [0, 0.59569, 0.99493, 1.49556, 2.00887, 2.50317, 3.00380, 3.49810, 4.00507, 4.49303, 5.00634, 5.49430, 5.99493, 6.50190, 6.97719, 7.50951, 7.98479, 8.28897],
+     'y': [47.98507, 48.28358, 48.50746, 48.80597, 49.02985, 48.95522, 48.58209, 47.83582, 46.94030, 46.04478, 45.00000, 44.02985, 42.98507, 41.71642, 39.92537, 37.83582, 35.67164, 33.58209],
+     'line': {'shape': 'spline', 'smoothing': 1.3, 'color':'blue'},
+     'name': '182mm',
+     'showlegend': false // Hide from legend
+    };
+
+    sixtyTwoPercent = {
+        'type': 'scatter',
+        'mode': 'lines',
+        'x': [5.58935, 5.50063, 5.44994, 5.40558, 5.44994, 5.59569, 5.81115, 5.99493, 6.19772, 6.48923, 6.71736, 6.81876, 7.09125, 7.52852],
+        'y': [44.85075, 42.23881, 39.17910, 36.64179, 34.92537, 33.05970, 31.49254, 30.82090, 30.82090, 31.19403, 31.86567, 32.46269, 34.85075, 39.32836],
+        'line': {'shape': 'spline', 'smoothing': 1, 'color':'black', 'dash':'dash'},
+        'name': '62%',
+        'showlegend': false // Hide from legend
+    };
+
+    sixtyTwoPointFivePercent = {
+    'type': 'scatter',
+    'mode': 'lines',
+    'x': [6.01394, 5.94423, 5.89987, 5.86819, 5.92522, 6.02662, 6.18504, 6.42586, 6.64132, 6.80608, 7.02155, 7.18631],
+    'y': [43.73134, 41.49254, 39.55224, 37.31343, 35.44776, 34.17910, 33.73134, 33.95522, 34.70149, 36.11940, 38.58209, 40.74627],
+    'line': {'shape': 'spline', 'smoothing': 1, 'color':'black', 'dash':'dash'},
+    'name': '62.5%',
+    'showlegend': false // Hide from legend
+    };
+
+    sixtyOnePercent = {
+    'type': 'scatter',
+    'mode': 'lines',
+    'x': [5.12674, 5.06337, 4.98733, 4.91762, 4.90494, 4.96198, 5.08238, 5.21546, 5.50063, 5.84918, 6.05830, 6.41318, 6.64766, 6.90748, 7.18631, 7.48416, 7.87706],
+    'y': [46.49254, 43.50746, 40.29851, 35.97015, 32.98507, 30.97015, 28.88060, 28.05970, 27.46269, 27.38806, 27.98507, 28.80597, 29.32836, 30.29851, 31.94030, 34.10448, 37.61194],
+    'line': {'shape': 'spline', 'smoothing': 1, 'color':'black', 'dash':'dash'},
+    'name': '61%',
+    'showlegend': false // Hide from legend
+    };
+
+
+    sixtyPercent = {
+    'type': 'scatter',
+    'mode': 'lines',
+    'x': [4.75285, 4.61977, 4.57541, 4.55006, 4.56274, 4.57541, 4.61977, 4.81622],
+    'y': [46.49254, 42.76119, 41.19403, 38.35821, 35.37313, 32.61194, 29.99999, 27.31343],
+    'line': {'shape': 'spline', 'smoothing': 1, 'color':'black', 'dash':'dash'},
+    'name': '60%',
+    'showlegend': false // Hide from legend
+    };
+
+    fiftyEightPercent = {
+    'type': 'scatter',
+    'mode': 'lines',
+    'x': [4.15716, 4.03042, 3.97972, 3.97338, 4.02408, 4.16350],
+    'y': [47.16418, 42.01493, 37.01493, 33.13433, 30.14925, 28.35821],
+    'line': {'shape': 'spline', 'smoothing': 1, 'color':'black', 'dash':'dash'},
+    'name': '58%',
+    'showlegend': false // Hide from legend
+    };
+
+
+
+     var layout = {
+        xaxis: {
+            title: 'Flow (L/s)',
+            range: [0,10]
+        },
+        yaxis: {
+            title: 'Head (m)',
+            range: [0,80]
+        },
+
+        annotations: [
+            {
+                x: 7.3, // X coordinate of the annotation
+                y: 17,  // Y coordinate of the annotation
+                text: '146 mm', // Title for the annotation
+                showarrow: false // Hide arrow
+            },
+            {
+                x: 7.6,   // X coordinate of the annotation
+                y: 22,  // Y coordinate of the annotation
+                text: '155 mm', // Title for the annotation
+                showarrow: false // Hide arrow
+            },
+            {
+                x: 7.8,   // X coordinate of the annotation
+                y: 26.5,  // Y coordinate of the annotation
+                text: '164 mm', // Title for the annotation
+                showarrow: false // Hide arrow
+            },
+            {
+                x: 8.1,   // X coordinate of the annotation
+                y: 30.4,  // Y coordinate of the annotation
+                text: '173 mm', // Title for the annotation
+                showarrow: false // Hide arrow
+            },
+            {
+                x: 8.6,   // X coordinate of the annotation
+                y: 33.6,  // Y coordinate of the annotation
+                text: '182 mm', // Title for the annotation
+                showarrow: false // Hide arrow
+            },
+            {
+                x: 7.0,   // X coordinate of the annotation
+                y: 42,  // Y coordinate of the annotation
+                text: '62.5%', // Title for the annotation
+                showarrow: false // Hide arrow
+            },
+            {
+                x: 7.6,   // X coordinate of the annotation
+                y: 41,  // Y coordinate of the annotation
+                text: '62%', // Title for the annotation
+                showarrow: false // Hide arrow
+            },
+            {
+                x: 7.95,   // X coordinate of the annotation
+                y: 39,  // Y coordinate of the annotation
+                text: '61%', // Title for the annotation
+                showarrow: false // Hide arrow
+            },
+        ]
+     }
+
+
+     var data = [mm146, mm155, mm164, mm173, mm182, sixtyTwoPercent, sixtyOnePercent, sixtyPercent, fiftyEightPercent, sixtyTwoPointFivePercent];
+
+     Plotly.newPlot('myDiv', data, layout);
+
+
+</script>
 </body>
