@@ -17,6 +17,7 @@ func setup(router *gin.Engine) {
 	//router.Static("pages/scripts", "./scripts")
 	//router.Static("pages/images", "./images")
 	router.Static("pages", "./pages")
+	router.Static("/static", "./static")
 	router.LoadHTMLGlob("pages/*.html")
 
 	router.GET("/", func(c *gin.Context) {
@@ -36,6 +37,12 @@ func setup(router *gin.Engine) {
 			"content": "Fastener Tool",
 		})
 	})
+
+	router.GET("/iso-decoder", func(c *gin.Context) {
+    		c.HTML(http.StatusOK, "iso-decoder.html", gin.H{
+    			"content": "Stalker Iso Decoder",
+    		})
+    	})
 
 	router.GET("/curve-generator", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "curve-generator.html", gin.H{
